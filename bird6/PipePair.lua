@@ -14,7 +14,7 @@ PipePair = Class{}
 local GAP_HEIGHT = 90
 
 function PipePair:init(y)
-    -- initialize pipes past the end of the screen
+    -- initialize pipes past the end of the screen (32px right of the screen, which we can't see)
     self.x = VIRTUAL_WIDTH + 32
 
     -- y value is for the topmost pipe; gap is a vertical shift of the second lower pipe

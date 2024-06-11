@@ -36,7 +36,12 @@ function Pipe:update(dt)
 end
 
 function Pipe:render()
-    love.graphics.draw(PIPE_IMAGE, self.x, 
-        (self.orientation == 'top' and self.y + PIPE_HEIGHT or self.y), 
-        0, 1, self.orientation == 'top' and -1 or 1)
+    love.graphics.draw(
+        PIPE_IMAGE, -- image to be drawn
+        self.x, -- X position
+        (self.orientation == 'top' and self.y + PIPE_HEIGHT or self.y), -- Y position
+        0, -- rotation
+        1, -- scale X axis
+        self.orientation == 'top' and -1 or 1
+    )
 end

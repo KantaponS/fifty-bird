@@ -127,12 +127,17 @@ function love.update(dt)
     -- spawn a new PipePair if the timer is past 2 seconds
     if spawnTimer > 2 then
         -- modify the last Y coordinate we placed so pipe gaps aren't too far apart
-        -- no higher than 10 pixels below the top edge of the screen,
-        -- and no lower than a gap length (90 pixels) from the bottom
+        -- UPPER BOUND - no higher than 10 pixels below the top edge of the screen,
+        -- LOWER BOUND - and no lower than a gap length (90 pixels) from the bottom
+        -- NOTE THAT incase of maximum y, 90px gap can make lower pipe invisible - parallel along the ground
+        -- SO, I adjusted it to 120px so that the lower pipe be able to see
+
         local y = math.max(-PIPE_HEIGHT + 10, 
-            math.min(lastY + math.random(-20, 20), VIRTUAL_HEIGHT - 90 - PIPE_HEIGHT))
+            math.min(lastY + math.random(-20, 20), VIRTUAL_HEIGHT - 120 - PIPE_HEIGHT))
+            
         lastY = y
         
+        -- insert the next pair of pipe (with new y)
         table.insert(pipePairs, PipePair(y))
         spawnTimer = 0
     end
