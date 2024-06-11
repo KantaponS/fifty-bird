@@ -67,6 +67,8 @@ end
 
 function love.update(dt)
     -- scroll background by preset speed * dt, looping back to 0 after the looping point
+    -- note that we can't use screen width because the backgroud starts a new pattern at 413px
+    -- that is the reason we use 413 as a looping point
     backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) 
         % BACKGROUND_LOOPING_POINT
 
